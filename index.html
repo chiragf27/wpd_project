@@ -165,12 +165,40 @@
 								<div class="container">
 									<form action="https://formsubmit.co/chiragferwani@gmail.com" method="POST"><!--onsubmit="sendEmail(); reset(); return false;"-->
 										<h3>GET IN TOUCH</h3>
-										<input type="text" id="name" placeholder="Your Name" required>
-										<input type="email" id="email" placeholder="Email Id" required>
-										<input type="text" id="phone" placeholder="Phone No" required>
-										<textarea id="message" rows="4" placeholder="How can we help you?"></textarea>
+										<input class="name"  type="text" id="name" placeholder="Your Name" required>
+										<input class="email"  type="email" id="email" placeholder="Email Id" required>
+										<input  class="phone"  type="text" id="phone" placeholder="Phone No" required>
+										<textarea class="msg"   id="message" rows="4" placeholder="How can we help you?"></textarea>
 										<button type="submit">Send</button>
 									</form>
+									<script src="https://smtpjs.com/v3/smtp.js"> </script>
+									<script>
+											//function sendEmail
+											const form = document.querySelector('.container'),
+										function sendMsg(e){
+											e.preventDefault();
+											
+											  const name = document.querySelector('.name'),
+													email = document.querySelector('.email'),
+													phone = document.querySelector('.phone'),
+													msg = document.querySelector('.msg');
+											  //function send email
+											  Email.send({
+												SecurityToken : "7ee7c272-abec-4d6f-a337-06d500c9e92a",
+												Host : "smtp.yourisp.com",
+												Username : "username",
+												Password : "password",
+												To : 'chiragferwani@gmail.com',
+												From : email.value,
+												Subject : "New Contact Enquiery",
+												Body : msg.value
+											}).then(
+											message => alert(message)
+											);
+										}
+										//add the event listener submit
+										form.addEventListener('submit',sendMsg);
+									</script>
 								</div>
 								<!--javascript enabled to receive data on email
 								<script src="https://smtpjs.com/v3/smtp.js"></script>
